@@ -1,0 +1,19 @@
+code.build:
+  engine: none
+  before_compile:
+    - wget -O /mnt/app/shaman https://s3.amazonaws.com/tools.nanopack.io/shaman/linux/amd64/shaman
+    - chmod 755 /mnt/app/shaman
+    - cp /app/config.json /mnt/app/config.json
+code.deploy:
+  transform:
+    - 'sed -i "s,@SECRET_TOKEN@,$SECRET_TOKEN," /app/config.json'
+data.unfs1:
+  image: nanobox/unfs
+web.dns:
+  network_dirs:
+    data.unfs1:
+      - db
+  ports:
+    - udp:53:53
+    - tcp:1632:1632
+  start: "/app/shaman -c /app/config.json"

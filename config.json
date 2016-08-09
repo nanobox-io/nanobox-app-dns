@@ -1,0 +1,14 @@
+{
+  "api-crt": "",
+  "api-key": "",
+  "api-key-password": "",
+  "api-listen": "0.0.0.0:1632",
+  "token": "@SECRET_TOKEN@",
+  "insecure": false,
+  "l2-connect": "scribble:///app/db/shaman",
+  "ttl": 60,
+  "domain": ".",
+  "dns-listen": "0.0.0.0:53",
+  "log-level": "info",
+  "server": true
+}
