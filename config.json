@@ -8,7 +8,7 @@
   "l2-connect": "scribble:///app/db/shaman",
   "ttl": 60,
   "domain": ".",
-  "dns-listen": "0.0.0.0:53",
+  "dns-listen": "0.0.0.0:8053",
   "log-level": "info",
   "server": true
 }

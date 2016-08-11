@@ -14,6 +14,6 @@ web.dns:
     data.unfs1:
       - db
   ports:
-    - udp:53:53
+    - udp:53:8053
     - tcp:1632:1632
   start: "/app/shaman -c /app/config.json"
