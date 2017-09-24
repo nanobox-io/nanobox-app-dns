@@ -1,12 +1,14 @@
-code.build:
+run.config:
   engine: none
-  before_compile:
-    - wget -O /mnt/app/shaman https://s3.amazonaws.com/tools.nanopack.io/shaman/linux/amd64/shaman
-    - chmod 755 /mnt/app/shaman
-    - cp /app/config.json /mnt/app/config.json
-code.deploy:
+  extra_steps:
+    - wget -O shaman https://s3.amazonaws.com/tools.nanopack.io/shaman/linux/amd64/shaman
+    - chmod 755 shaman
+deploy.config:
+  # This shouldn't be necessary... Seems like a bug?
+  extra_steps:
+    - cp -R ./* /mnt/app/
   transform:
-    - 'sed -i "s,@SECRET_TOKEN@,$SECRET_TOKEN," /app/config.json'
+    - 'sed -i "s,@SECRET_TOKEN@,$SECRET_TOKEN," config.json'
 data.unfs1:
   image: nanobox/unfs
 web.dns:
@@ -16,4 +18,4 @@ web.dns:
   ports:
     - udp:53:8053
     - tcp:1632:1632
-  start: "/app/shaman -c /app/config.json"
+  start: "/app/shaman -c config.json"
